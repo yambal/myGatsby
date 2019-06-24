@@ -6,25 +6,24 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = (props) => {
-  const aphorismEdges = props.data.allContentfulAphorism.edges
-  console.log(aphorismEdges)
+  const aphorismNodes = props.data.allContentfulAphorism.nodes
+  console.log(aphorismNodes)
   return(
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      {false && <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
-      </div>
+      </div>}
       <Link to="/page-2/">Go to page 2</Link>
       {
-        aphorismEdges.map((edge) => {
-          console.log(edge.node)
+        aphorismNodes.map((node) => {
+          console.log(node)
+          console.log(node.imege.resolutions.tracedSVG)
+          console.log(node.imege.resolutions.srcWebp)
           return(
-            <blockquote key={edge.node.id}>
-              {edge.node.aphorism.aphorism}
-              <div>{edge.node.speaker}</div>
+            <blockquote key={node.slug}>
+              {node.aphorism.aphorism}
+              <div>{node.speaker}</div>
             </blockquote>
           )
         })
@@ -38,13 +37,17 @@ export default IndexPage
 export const query = graphql`
 query MyQuery {
   allContentfulAphorism {
-    edges {
-      node {
-        slug
-        id
-        speaker
-        aphorism {
-          aphorism
+    nodes {
+      slug
+      speaker
+      aphorism {
+        aphorism
+      }
+      createdAt
+      imege {
+        resolutions(width: 100, height: 100) {
+          tracedSVG
+          srcWebp
         }
       }
     }
