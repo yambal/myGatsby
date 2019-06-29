@@ -5,6 +5,9 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-typescript`,
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -13,6 +16,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-sqip`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -32,6 +36,12 @@ module.exports = {
       options: {
         spaceId: `ecvfg1u6ein7`,
         accessToken: '_AFpwJLCkmwQdAuiXsopy7js7dbzOKCCeDQrMkLXyFk',
+      },
+    },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `juneyamamoto`,
       },
     },
   ],

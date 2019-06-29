@@ -6,48 +6,43 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = (props) => {
-  const aphorismNodes = props.data.allContentfulAphorism.nodes
-  console.log(aphorismNodes)
+  //const aphorismNodes = props.data.allContentfulAphorism.nodes
+  console.log('index >> ', props.data.allInstaNode.edges)
   return(
     <Layout>
       <SEO title="Home" />
-      {false && <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
-      </div>}
+      </div>
+
       <Link to="/page-2/">Go to page 2</Link>
+
       {
-        aphorismNodes.map((node) => {
-          console.log(node)
-          console.log(node.imege.resolutions.tracedSVG)
-          console.log(node.imege.resolutions.srcWebp)
-          return(
-            <blockquote key={node.slug}>
-              {node.aphorism.aphorism}
-              <div>{node.speaker}</div>
-            </blockquote>
-          )
+        props.data.allInstaNode.edges.map((node, index) => {
+          console.log('index', node.node.id)
+          return (<Link to={`/insta/${node.node.id}`} key={index}>{index} </Link>)
         })
       }
+
     </Layout>
   )
 }
 
 export default IndexPage
 
-export const query = graphql`
+export const pageQuery = graphql`
 query MyQuery {
-  allContentfulAphorism {
-    nodes {
-      slug
-      speaker
-      aphorism {
-        aphorism
-      }
-      createdAt
-      imege {
-        resolutions(width: 100, height: 100) {
-          tracedSVG
-          srcWebp
+  allInstaNode(limit: 10, filter: {mediaType: {eq: "GraphImage"}}, sort: {fields: timestamp, order: DESC}) {
+    edges {
+      node {
+        caption
+        id
+        likes
+        preview
+        timestamp
+        dimensions {
+          height
+          width
         }
       }
     }
