@@ -12,6 +12,9 @@ const InstagramTemplate:React.SFC = (props: any) => {
               <LazyImg
                 thumb={localFile.childImageSharp.sqip.dataURI}
                 src={localFile.publicURL}
+                height="100vh"
+                width="100vw"
+                fit="cover"
               />
               <dl>
                 <dt>{id}</dt>
