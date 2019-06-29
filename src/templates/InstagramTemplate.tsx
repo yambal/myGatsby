@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import LazyImg from "../components/LazyImg"
 
 const InstagramTemplate:React.SFC = (props: any) => {
     console.log('InstagramTemplate', props.data.instaNode)
@@ -8,6 +9,10 @@ const InstagramTemplate:React.SFC = (props: any) => {
 
     return (
             <div>
+              <LazyImg
+                thumb={localFile.childImageSharp.sqip.dataURI}
+                src={localFile.publicURL}
+              />
               <dl>
                 <dt>{id}</dt>
                 <dd>{username}</dd>
@@ -15,9 +20,6 @@ const InstagramTemplate:React.SFC = (props: any) => {
                 <dd>{caption}</dd>
                 <dd>{likes}</dd>
               </dl>
-              <pre>{JSON.stringify(localFile.publicURL)}</pre>
-              <img src={localFile.publicURL} alt="" width="50%"/>
-              <img src={localFile.childImageSharp.sqip.dataURI} alt="" width="50%"/>
             </div>
     )
 }

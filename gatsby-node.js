@@ -24,7 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
   }`).then(result => {
     if (result.errors) {
       console.log(42, 'Error')
-      throw result.errors
+      return null
     }
     const edges = result.data.allInstaNode.edges
     edges.forEach((node, index) => {
