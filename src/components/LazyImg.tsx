@@ -1,9 +1,14 @@
 import React from "react"
+import styled from "styled-components"
 
 interface iLazyImgProps {
     thumb: string
     src: string
 }
+
+const Outer = styled.div`
+    position: relative;
+`
 
 class LazyImg extends React.Component<iLazyImgProps> {
     frontImgRef = React.createRef<HTMLImageElement>()
@@ -33,12 +38,10 @@ class LazyImg extends React.Component<iLazyImgProps> {
             lefy: 0
         }
         return(
-            <React.Fragment>
-                <div style={{ position: 'relative' }}>
-                    <img src={this.props.thumb} />
-                    <img src={this.props.src} ref={this.frontImgRef} style={style}/>
-                </div>
-            </React.Fragment>
+            <Outer>
+                <img src={this.props.thumb} />
+                <img src={this.props.src} ref={this.frontImgRef} style={style}/>
+            </Outer>
         )
     }
 }
