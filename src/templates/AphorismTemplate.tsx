@@ -4,9 +4,11 @@ import Layout from "../components/layout"
 import LazyImg from "../components/LazyImg"
 
 const AphorismTemplate:React.SFC = (props: any) => {
+    const a = props.data.contentfulAphorism.imege.localFile.childImageSharp.sqip;
     return (
             <div>
-              <pre>{JSON.stringify(props, null, 2)}</pre>
+              <pre>{JSON.stringify(a, null, 2)}</pre>
+              {a && <img src={a.dataURI} />}
             </div>
     )
 }
@@ -28,9 +30,16 @@ export const query = graphql`
           aphorism
         }
         imege{
-            sizes {
-                src
-                sizes
+            localFile {
+                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 640, maxHeight: 640) {
+                    ...GatsbyImageSharpFluid_noBase64
+                  }
+                  sqip(blur: 0, numberOfPrimitives: 100, mode: 1) {
+                    dataURI
+                  }
+                }
             }
         }
     }
