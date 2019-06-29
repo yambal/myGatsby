@@ -1,13 +1,48 @@
 import React from "react"
 import styled from "styled-components"
 
-interface iLazyImgProps {
+interface iLazyImgProps extends iOuterProps {
     thumb: string
     src: string
 }
 
-const Outer = styled.div`
+interface iOuterProps extends iFit{
+    width: string
+    height: string
+}
+
+interface iFit {
+    fit: 'cover' | 'contain' | 'fill'
+}
+
+const Outer = styled.div<iOuterProps>`
     position: relative;
+    margin: 0;
+    padding: 0;
+    width: ${props => props.width ? props.width : null};
+    height: ${props => props.height ? props.height: null};
+`
+
+const FrontImg = styled.img<iFit>`
+    display: block;
+    position: absolute;
+    top : 0;
+    right: 0;
+    bottom : 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: ${props => props.fit ? props.fit : "cover"};
+`
+
+const BackImg = styled.img<iFit>`
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: ${props => props.fit ? props.fit : "cover"};
 `
 
 class LazyImg extends React.Component<iLazyImgProps> {
@@ -29,18 +64,12 @@ class LazyImg extends React.Component<iLazyImgProps> {
     render() {
         const style = {
             transition: 'opacity 2s linear 0.5s',
-            opacity: this.state.opacity,
-            display: 'block',
-            position: 'absolute',
-            top : 0,
-            right: 0,
-            bottom : 0,
-            lefy: 0
+            opacity: this.state.opacity
         }
         return(
-            <Outer>
-                <img src={this.props.thumb} />
-                <img src={this.props.src} ref={this.frontImgRef} style={style}/>
+            <Outer width={this.props.width} height={this.props.height}>
+                <BackImg src={this.props.thumb} fit={this.props.fit}/>
+                <FrontImg src={this.props.src} fit={this.props.fit} ref={this.frontImgRef} style={style}/>
             </Outer>
         )
     }
