@@ -3,11 +3,16 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 
 const AphorismTemplate:React.SFC = (props: any) => {
-    //const a = props.data.contentfulAphorism.imege.localFile.childImageSharp.sqip;
+    const aphorism = props.data.contentfulAphorism
     return (
-            <div>
-              <pre>{JSON.stringify(props, null, 2)}</pre>
-            </div>
+      <React.Fragment>
+        <div className="w-full-w h-full-w bg-black text-white">
+          {aphorism.aphorism.aphorism}
+        </div>
+        <div className="container mx-20">
+          <p>{JSON.stringify(aphorism, null, 2)}</p>
+        </div>
+        </React.Fragment>
     )
 }
 

@@ -51,7 +51,6 @@ module.exports = {
       options: {
         username: `juneyamamoto`,
       },
-    },
-    `gatsby-plugin-styled-components`
+    }
   ],
 }

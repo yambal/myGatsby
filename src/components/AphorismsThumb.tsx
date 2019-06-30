@@ -6,10 +6,11 @@ interface iAphorismsThumb {
     tags: string[]
     spaeker: string
     aphorism: string
+    className: any
 } 
 
 const AphorismsThumb:React.SFC<iAphorismsThumb> = props => {
-    return <Link to={`/aphorism/${props.slug}`}>
+    return <Link to={`/aphorism/${props.slug}`} className={props.className}>
         <div>{props.aphorism}</div>
         <div>{props.spaeker}</div>
     </Link>
