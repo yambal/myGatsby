@@ -6,6 +6,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `ecvfg1u6ein7`,
+        accessToken: `_AFpwJLCkmwQdAuiXsopy7js7dbzOKCCeDQrMkLXyFk`,
+        downloadLocal: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-typescript`,
     },
     `gatsby-plugin-react-helmet`,

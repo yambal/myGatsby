@@ -3,19 +3,18 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
-import SEO from "../components/seo"
 
 const IndexPage = (props) => {
   //const aphorismNodes = props.data.allContentfulAphorism.nodes
   console.log('index >> ', props.data.allInstaNode.edges)
   return(
     <Layout>
-      <SEO title="Home" />
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>
 
       <Link to="/page-2/">Go to page 2</Link>
+      <Link to="/aphorisms/">aphorisms</Link>
 
       {
         props.data.allInstaNode.edges.map((node, index) => {
