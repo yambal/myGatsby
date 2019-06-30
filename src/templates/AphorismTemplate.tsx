@@ -1,14 +1,12 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import LazyImg from "../components/LazyImg"
 
 const AphorismTemplate:React.SFC = (props: any) => {
-    const a = props.data.contentfulAphorism.imege.localFile.childImageSharp.sqip;
+    //const a = props.data.contentfulAphorism.imege.localFile.childImageSharp.sqip;
     return (
             <div>
-              <pre>{JSON.stringify(a, null, 2)}</pre>
-              {a && <img src={a.dataURI} />}
+              <pre>{JSON.stringify(props, null, 2)}</pre>
             </div>
     )
 }
