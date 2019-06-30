@@ -7,19 +7,22 @@ import SEO from "../components/seo"
 import AphorismsThumb from '../components/AphorismsThumb'
 
 const AphorismsIndex = (props) => {
-    const { nodes } = props.data.allContentfulAphorism
+  const { nodes } = props.data.allContentfulAphorism
   return(
-    <div>
-        {nodes.map((node, index) => {
-
-            return (<AphorismsThumb
-                slug={node.slug}
-                tags={node.tag}
-                spaeker={node.speaker}
-                aphorism={node.aphorism.aphorism}
-            />)
-        })}
-    </div>
+    <Layout>
+      {nodes.map((node, index) => {
+        return (
+          <AphorismsThumb
+            key={index}
+            slug={node.slug}
+            tags={node.tag}
+            spaeker={node.speaker}
+            aphorism={node.aphorism.aphorism}
+            className="container mx-20 inline-block p-20"
+          />
+        )
+      })}
+    </Layout>
   )
 }
 
