@@ -1,16 +1,40 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import LazyImg from "../components/LazyImg";
 
 const AphorismTemplate:React.SFC = (props: any) => {
     const aphorism = props.data.contentfulAphorism
+
+    let speakerSrc = null
+    let speakerThumb = null
+    if (aphorism.imege && aphorism.imege.localFile) {
+      speakerSrc = aphorism.imege.localFile.publicURL
+      speakerThumb = aphorism.imege.localFile.childImageSharp.sqip.dataURI
+    }
+    
     return (
       <React.Fragment>
-        <div className="w-full-w h-full-w bg-black text-white">
-          {aphorism.aphorism.aphorism}
+        <div className="relative">
+          <div className="w-full-w h-full-w bg-black text-white">
+            {aphorism.aphorism.aphorism}
+          </div>
+          <div className="w-25vw h-25vw rounded-circle overflow-hidden absolute -bottom-12vw left-25vwCenter">
+            {speakerSrc && speakerThumb && <LazyImg
+              src={speakerSrc}
+              thumb={speakerThumb}
+              width="100%"
+              height="100%"
+              fit="cover"
+            />}
+          </div>
         </div>
+        {aphorism.speaker}
+        {aphorism.tag}
+
         <div className="container mx-20">
-          <p>{JSON.stringify(aphorism, null, 2)}</p>
+          {props.pageContext.prevSlug ? <Link to={`/aphorism/${props.pageContext.prevSlug}`}>Prev</Link> : null}
+          {props.pageContext.nextSlug ? <Link to={`/aphorism/${props.pageContext.nextSlug}`}>Next</Link> : null}
         </div>
         </React.Fragment>
     )
