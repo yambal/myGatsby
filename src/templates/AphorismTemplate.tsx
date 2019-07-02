@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import LazyImg from "../components/LazyImg";
+import cu from "../lib/ColorUtil";
 
 const AphorismTemplate:React.SFC = (props: any) => {
     const aphorism = props.data.contentfulAphorism
@@ -12,12 +13,14 @@ const AphorismTemplate:React.SFC = (props: any) => {
       speakerSrc = aphorism.imege.localFile.publicURL
       speakerThumb = aphorism.imege.localFile.childImageSharp.sqip.dataURI
     }
+
+    const hsl = cu.textToHsl(aphorism.aphorism.aphorism)
     
     return (
       <React.Fragment>
         <div className="relative">
-          <div className="w-full-w h-full-w bg-black text-white">
-            {aphorism.aphorism.aphorism}
+          <div className="w-full-w h-full-w text-white flex items-center p-20" style={{ backgroundColor: `hsl(${hsl.h}, 100%, 25%)` }}>
+            <div className="text-wc-v26">{aphorism.aphorism.aphorism}</div>
           </div>
           <div className="w-25vw h-25vw rounded-circle overflow-hidden absolute -bottom-12vw left-25vwCenter">
             {speakerSrc && speakerThumb && <LazyImg
