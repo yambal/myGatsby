@@ -3,6 +3,9 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import LazyImg from "../components/LazyImg"
 import SEO from "../components/seo"
+import IconNext from "../components/atoms/IconNext";
+import IconPrev from "../components/atoms/IconPrev";
+import PrevNext from "../components/molecules/PrevNext";
 
 const InstagramTemplate:React.SFC = (props: any) => {
   console.log('InstagramTemplate', props)
@@ -12,23 +15,31 @@ const InstagramTemplate:React.SFC = (props: any) => {
   return (
     <Layout>
       <SEO title="" />
-      <LazyImg
-        thumb={localFile.childImageSharp.sqip.dataURI}
-        src={localFile.publicURL}
-        height="100vh"
-        width="100%"
-        fit="cover"
-      />
-      <div className="container px-20">
-        <dl>
-          <dt>{id}</dt>
-          <dd>{username}</dd>
-          <dd>{timestamp}</dd>
-          <dd>{caption}</dd>
-          <dd>{likes}</dd>
-        </dl>
-        {props.pageContext.next ? <Link to={`/insta/${props.pageContext.next.id}`}>next</Link> : null}
-        {props.pageContext.previous ? <Link to={`/insta/${props.pageContext.previous.id}`}>prev</Link> : null}
+      <div className="relative">
+        <LazyImg
+          thumb={localFile.childImageSharp.sqip.dataURI}
+          src={localFile.publicURL}
+          height="100vh"
+          width="100%"
+          fit="cover"
+        />
+        <div className="absolute bottom-0 left-0 right-0">
+          <div className="container px-20 ml-auto mr-auto">
+            <PrevNext
+              urlNext={props.pageContext.next ? `/insta/${props.pageContext.next.id}` : null}
+              urlPrev={props.pageContext.previous ? `/insta/${props.pageContext.previous.id}` : null}
+              iconSize="10vw"
+            >
+              <dl>
+                <dt>{id}</dt>
+                <dd>{username}</dd>
+                <dd>{timestamp}</dd>
+                <dd>{caption}</dd>
+                <dd>{likes}</dd>
+              </dl>
+            </PrevNext>
+          </div>
+        </div>
       </div>
     </Layout>
   )
