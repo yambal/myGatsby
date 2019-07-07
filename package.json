@@ -37,7 +37,7 @@
   "scripts": {
     "clear": "rm -rf .cache && rm -rf public/static",
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "yarn run tailwind && gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
