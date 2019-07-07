@@ -4,16 +4,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "../style/style.css"
 
-/*
-// import { createGlobalStyle, ThemeProvider } from "styled-components";
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-`
-*/
-
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {

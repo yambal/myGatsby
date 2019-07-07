@@ -51,7 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
     const inataEdges = result.data.allInstaNode.edges
     inataEdges.forEach((node, index) => {
       const { id, caption, timestamp, likes, preview, dimensions } = node.node
-      console.log(index, id, caption, timestamp, likes, dimensions.width)
+      console.log('inata', node.next)
 
       createPage({
         path: '/insta/' + id,
@@ -63,7 +63,9 @@ exports.createPages = ({ graphql, actions }) => {
           likes,
           preview,
           width: dimensions.width,
-          height: dimensions.height
+          height: dimensions.height,
+          next: node.next,
+          previous: node.previous
         },
       })
     })

@@ -10,18 +10,21 @@ const AphorismsIndex = (props) => {
   const { nodes } = props.data.allContentfulAphorism
   return(
     <Layout>
-      {nodes.map((node, index) => {
-        return (
-          <AphorismsThumb
-            key={index}
-            slug={node.slug}
-            tags={node.tag}
-            spaeker={node.speaker}
-            aphorism={node.aphorism.aphorism}
-            className="container mx-20 inline-block p-20"
-          />
-        )
-      })}
+      <SEO title="格言" />
+      <div>
+        {nodes.map((node, index) => {
+          return (
+            <AphorismsThumb
+              key={index}
+              slug={node.slug}
+              tags={node.tag}
+              spaeker={node.speaker}
+              aphorism={node.aphorism.aphorism}
+              className="container block p-20 w-full"
+            />
+          )
+        })}
+      </div>
     </Layout>
   )
 }

@@ -4,13 +4,13 @@ import React from "react"
 
 const Header = ({ siteTitle }) => (
   <header className="bg-black text-white">
-    <div className="container mx-20 flex flex-row">
+    <div className="container px-20 flex flex-row">
       <div className="flex-grow">
         <h1>
           <Link to="/">{siteTitle}</Link>
         </h1>
       </div>
-      <div>
+      <div className="flex-grow">
         <Link to="/aphorisms">格言</Link>
       </div>
     </div>

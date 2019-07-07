@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
+import SEO from "../components/seo"
 import Layout from "../components/layout"
 import Image from "../components/image"
 
@@ -9,6 +9,7 @@ const IndexPage = (props) => {
   console.log('index >> ', props.data.allInstaNode.edges)
   return(
     <Layout>
+      <SEO/>
       <main className="container mx-20">
         <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
           <Image />
