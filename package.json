@@ -25,6 +25,9 @@
     "tailwindcss": "^1.0.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@storybook/react": "^5.1.9",
+    "babel-loader": "^8.0.6",
     "prettier": "^1.18.2",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
@@ -42,7 +45,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "tailwind": "npx tailwind build src/style/base.css -o src/style/style.css"
+    "tailwind": "npx tailwind build src/style/base.css -o src/style/style.css",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
